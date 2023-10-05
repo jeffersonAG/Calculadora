@@ -6,7 +6,11 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class HelloApplication extends Application {
@@ -27,12 +31,19 @@ public class HelloApplication extends Application {
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(5);
         grid.setHgap(5);
+        grid.setStyle("-fx-background-color: black;");
 
         pantalla = new TextField();
         pantalla.setPrefHeight(50);
         pantalla.setPrefWidth(200);
         pantalla.setEditable(false);
-        pantalla.setStyle("-fx-background-color: #800080; -fx-text-fill: black;");
+        BackgroundFill backgroundFill = new BackgroundFill(Color.BLACK, new CornerRadii(5), Insets.EMPTY);
+        Background background = new Background(backgroundFill);
+        pantalla.setBackground(background);
+        pantalla.setStyle(
+                "-fx-background-color: black; -fx-text-fill: #800080; " +
+                        "-fx-border-color: #800080; -fx-border-width: 2px;"
+        );
         grid.add(pantalla, 0, 0, 4, 1);
 
         Button[] botones = new Button[16];
@@ -46,7 +57,13 @@ public class HelloApplication extends Application {
         for (int i = 0; i < 16; i++) {
             botones[i] = new Button(nombresBotones[i]);
             botones[i].setPrefSize(50, 50);
-            botones[i].setStyle("-fx-background-color: #800080; -fx-text-fill: black;");
+            BackgroundFill buttonBackgroundFill = new BackgroundFill(Color.BLACK, new CornerRadii(5), Insets.EMPTY);
+            Background buttonBackground = new Background(buttonBackgroundFill);
+            botones[i].setBackground(buttonBackground);
+            botones[i].setStyle(
+                    "-fx-background-color: black; -fx-text-fill: #800080; " +
+                            "-fx-border-color: #800080; -fx-border-width: 2px;"
+            );
         }
 
         for (int i = 0; i < 4; i++) {
@@ -65,7 +82,7 @@ public class HelloApplication extends Application {
             });
         }
 
-        Scene scene = new Scene(grid, 210, 250);
+        Scene scene = new Scene(grid, 210, 250, Color.BLACK);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
