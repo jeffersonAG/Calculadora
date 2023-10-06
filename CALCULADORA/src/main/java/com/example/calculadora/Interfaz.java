@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class HelloApplication extends Application {
+public class Interfaz extends Application {
     private TextField pantalla;
     private String operador;
     private double numero1;
@@ -46,15 +46,16 @@ public class HelloApplication extends Application {
         );
         grid.add(pantalla, 0, 0, 4, 1);
 
-        Button[] botones = new Button[16];
+        Button[] botones = new Button[18];
         String[] nombresBotones = {
                 "7", "8", "9", "/",
                 "4", "5", "6", "*",
                 "1", "2", "3", "-",
-                "0", "C", "=", "+"
+                "0", "AC", "=", "+",
+                "CAM", "DEL"
         };
 
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 18; i++) {
             botones[i] = new Button(nombresBotones[i]);
             botones[i].setPrefSize(50, 50);
             BackgroundFill buttonBackgroundFill = new BackgroundFill(Color.BLACK, new CornerRadii(5), Insets.EMPTY);
@@ -64,6 +65,18 @@ public class HelloApplication extends Application {
                     "-fx-background-color: black; -fx-text-fill: #800080; " +
                             "-fx-border-color: #800080; -fx-border-width: 2px;"
             );
+
+            if (nombresBotones[i].equals("CAM")) {
+                botones[i].setText("CAM");
+                // Agregar el controlador de eventos para el botón "CAM"
+                botones[i].setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        // Aquí puedes iniciar la clase ReconocimientoFacial
+                        ReconocimientoFacial.main(new String[] {});
+                    }
+                });
+            }
         }
 
         for (int i = 0; i < 4; i++) {
@@ -72,7 +85,10 @@ public class HelloApplication extends Application {
             }
         }
 
-        for (int i = 0; i < 16; i++) {
+        grid.add(botones[16], 0, 5, 2, 1);
+        grid.add(botones[17], 2, 5, 2, 1);
+
+        for (int i = 0; i < 18; i++) {
             final int j = i;
             botones[i].setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -82,7 +98,7 @@ public class HelloApplication extends Application {
             });
         }
 
-        Scene scene = new Scene(grid, 210, 250, Color.BLACK);
+        Scene scene = new Scene(grid, 210, 300, Color.BLACK);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -92,6 +108,16 @@ public class HelloApplication extends Application {
             pantalla.setText("");
             nuevaOperacion = false;
         }
-        pantalla.appendText(digito);
+
+        if (digito.equals("AC")) {
+            pantalla.clear();
+        } else if (digito.equals("DEL")) {
+            String contenido = pantalla.getText();
+            if (!contenido.isEmpty()) {
+                pantalla.setText(contenido.substring(0, contenido.length() - 1));
+            }
+        } else {
+            pantalla.appendText(digito);
+        }
     }
 }
