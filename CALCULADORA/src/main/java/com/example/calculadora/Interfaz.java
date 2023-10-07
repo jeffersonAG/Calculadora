@@ -1,7 +1,6 @@
 package com.example.calculadora;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -66,18 +65,33 @@ public class Interfaz extends Application {
                             "-fx-border-color: #800080; -fx-border-width: 2px;"
             );
 
-            if (nombresBotones[i].equals("CAM")) {
-                botones[i].setText("CAM");
-                // Agregar el controlador de eventos para el botón "CAM"
-                botones[i].setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        // Aquí puedes iniciar la clase ReconocimientoFacial
-                        ReconocimientoFacial.main(new String[] {});
-                    }
-                });
-            }
+            // Asigna el método correspondiente a cada botón
+            int finalI = i;
+            botones[i].setOnAction(e -> botonPresionado(nombresBotones[finalI]));
         }
+
+        // Asigna los métodos específicos a cada botón
+        botones[0].setOnAction(e -> botonNumero("7"));
+        botones[1].setOnAction(e -> botonNumero("8"));
+        botones[2].setOnAction(e -> botonNumero("9"));
+        botones[3].setOnAction(e -> botonOperador("/"));
+        botones[4].setOnAction(e -> botonNumero("4"));
+        botones[5].setOnAction(e -> botonNumero("5"));
+        botones[6].setOnAction(e -> botonNumero("6"));
+        botones[7].setOnAction(e -> botonOperador("*"));
+        botones[8].setOnAction(e -> botonNumero("1"));
+        botones[9].setOnAction(e -> botonNumero("2"));
+        botones[10].setOnAction(e -> botonNumero("3"));
+        botones[11].setOnAction(e -> botonOperador("-"));
+        botones[12].setOnAction(e -> botonNumero("0"));
+        botones[13].setOnAction(e -> pantalla.clear());
+        botones[14].setOnAction(e -> calcularResultado());
+        botones[15].setOnAction(e -> botonOperador("+"));
+
+        // Asigna el método abrirReconocimientoFacial al botón "CAM"
+        botones[16].setOnAction(e -> abrirReconocimientoFacial());
+
+        botones[17].setOnAction(e -> borrarCaracter());
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -88,34 +102,81 @@ public class Interfaz extends Application {
         grid.add(botones[16], 0, 5, 2, 1);
         grid.add(botones[17], 2, 5, 2, 1);
 
-        for (int i = 0; i < 18; i++) {
-            final int j = i;
-            botones[i].setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    botonPresionado(nombresBotones[j]);
-                }
-            });
-        }
-
         Scene scene = new Scene(grid, 210, 300, Color.BLACK);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    private void botonNumero(String digito) {
+        if (nuevaOperacion) {
+            pantalla.clear();
+            nuevaOperacion = false;
+        }
+        pantalla.appendText(digito);
+    }
+
+    private void botonOperador(String op) {
+        if (!nuevaOperacion) {
+            calcularResultado();
+            numero1 = Double.parseDouble(pantalla.getText());
+            operador = op;
+            nuevaOperacion = true;
+        }
+    }
+
+    private void calcularResultado() {
+        if (!nuevaOperacion) {
+            double numero2 = Double.parseDouble(pantalla.getText());
+            double resultado = 0;
+            switch (operador) {
+                case "+":
+                    resultado = numero1 + numero2;
+                    break;
+                case "-":
+                    resultado = numero1 - numero2;
+                    break;
+                case "*":
+                    resultado = numero1 * numero2;
+                    break;
+                case "/":
+                    resultado = numero1 / numero2;
+                    break;
+            }
+            pantalla.setText(String.valueOf(resultado));
+            nuevaOperacion = true;
+        }
+    }
+
+    private void abrirReconocimientoFacial() {
+        try {
+            // Crear la instancia de ReconocimientoFacial y llamar a su método start
+
+            ReconocimientoFacial reconocimientoFacial = new ReconocimientoFacial();
+            Stage stage = new Stage();
+            reconocimientoFacial.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void borrarCaracter() {
+        String contenido = pantalla.getText();
+        if (!contenido.isEmpty()) {
+            pantalla.setText(contenido.substring(0, contenido.length() - 1));
+        }
+    }
+
     private void botonPresionado(String digito) {
         if (nuevaOperacion) {
-            pantalla.setText("");
+            pantalla.clear();
             nuevaOperacion = false;
         }
 
         if (digito.equals("AC")) {
             pantalla.clear();
         } else if (digito.equals("DEL")) {
-            String contenido = pantalla.getText();
-            if (!contenido.isEmpty()) {
-                pantalla.setText(contenido.substring(0, contenido.length() - 1));
-            }
+            borrarCaracter();
         } else {
             pantalla.appendText(digito);
         }

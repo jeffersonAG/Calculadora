@@ -3,9 +3,9 @@ package com.example.calculadora;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
+import org.opencv.videoio.Videoio;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -19,12 +19,11 @@ public class ReconocimientoFacial extends Application {
     private ImageView imageView;
     private VideoCapture videoCapture;
 
-    public static void main(String[] args) {
+    public ReconocimientoFacial() {
         // Cargar la biblioteca OpenCV (Open Source Computer Vision Library).
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
-        // Iniciar la aplicación JavaFX.
-        launch(args);
+
     }
 
     @Override
@@ -38,33 +37,51 @@ public class ReconocimientoFacial extends Application {
             return;
         }
 
-        // Configurar la ventana de JavaFX.
+        // Obtener la resolución de la cámara.
+        int frameWidth = (int) videoCapture.get(Videoio.CAP_PROP_FRAME_WIDTH);
+        int frameHeight = (int) videoCapture.get(Videoio.CAP_PROP_FRAME_HEIGHT);
+
+        // Configurar la ventana de JavaFX para que coincida con la resolución de la cámara.
         primaryStage.setTitle("Aplicación de Cámara");
         StackPane root = new StackPane();
         imageView = new ImageView();
+        imageView.setPreserveRatio(true); // Mantener la relación de aspecto de la imagen.
+        imageView.setFitWidth(frameWidth); // Establecer el ancho del ImageView según la resolución de la cámara.
+        imageView.setFitHeight(frameHeight); // Establecer la altura del ImageView según la resolución de la cámara.
         root.getChildren().add(imageView);
-        Scene scene = new Scene(root, 800, 600); // Crear una escena con dimensiones predefinidas.
-        primaryStage.setScene(scene);
 
         // Crear un VBox para organizar el botón en la esquina inferior derecha.
         VBox buttonContainer = new VBox();
-        buttonContainer.setAlignment(Pos.BOTTOM_RIGHT); // Alinear el VBox en la esquina inferior derecha.
+        buttonContainer.setStyle("-fx-alignment: bottom-right;"); // Alinear el VBox en la esquina inferior derecha.
+        Button stopButton = new Button("VOLVER");
+        stopButton.setOnAction(event -> {
+            // Detener la captura de video si es necesario
+            videoCapture.release();
 
-        // Agregar un botón de detención para cerrar la aplicación.
-        Button stopButton = new Button("Detener");
-        stopButton.setOnAction(event -> stopApplication(primaryStage));
+            // Cerrar la ventana actual de ReconocimientoFacial
+            primaryStage.close();
+
+            // Crear una nueva instancia de la clase Interfaz
+            Interfaz interfaz = new Interfaz();
+            Stage newStage = new Stage();
+            interfaz.start(newStage);
+        });
         buttonContainer.getChildren().add(stopButton);
 
+
         // Agregar el VBox al StackPane principal.
-        root.getChildren().add(buttonContainer);
+        root.getChildren().addAll(buttonContainer);
 
         // Mostrar la ventana principal de la aplicación.
-        primaryStage.show();
+        Scene scene = new Scene(root, frameWidth, frameHeight); // Tamaño inicial de la ventana.
+        primaryStage.setScene(scene);
 
         // Capturar y mostrar el flujo de la cámara en un hilo separado para no bloquear la interfaz de usuario.
         Thread captureThread = new Thread(this::captureAndShowVideo);
         captureThread.setDaemon(true); // Hacer que el hilo sea un hilo de fondo que se cierre cuando se cierre la aplicación.
         captureThread.start();
+
+        primaryStage.show();
     }
 
     // Método para capturar y mostrar el flujo de la cámara.
@@ -89,4 +106,5 @@ public class ReconocimientoFacial extends Application {
         videoCapture.release();
         primaryStage.close();
     }
+
 }
