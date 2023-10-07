@@ -1,5 +1,4 @@
 package com.example.calculadora;
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -24,18 +23,21 @@ public class Interfaz extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        // Configuración de la ventana principal
         primaryStage.setTitle("Calculadora JavaFX");
 
+        // Creación del diseño de la interfaz utilizando GridPane
         GridPane grid = new GridPane();
-        grid.setPadding(new Insets(10, 10, 10, 10));
-        grid.setVgap(5);
-        grid.setHgap(5);
-        grid.setStyle("-fx-background-color: black;");
+        grid.setPadding(new Insets(10, 10, 10, 10)); // Margen interior del grid
+        grid.setVgap(5); // Espacio vertical entre celdas
+        grid.setHgap(5); // Espacio horizontal entre celdas
+        grid.setStyle("-fx-background-color: black;"); // Establecer fondo negro
 
+        // Creación del campo de texto para mostrar y editar la entrada/salida
         pantalla = new TextField();
         pantalla.setPrefHeight(50);
         pantalla.setPrefWidth(200);
-        pantalla.setEditable(false);
+        pantalla.setEditable(false); // No editable
         BackgroundFill backgroundFill = new BackgroundFill(Color.BLACK, new CornerRadii(5), Insets.EMPTY);
         Background background = new Background(backgroundFill);
         pantalla.setBackground(background);
@@ -43,8 +45,9 @@ public class Interfaz extends Application {
                 "-fx-background-color: black; -fx-text-fill: #800080; " +
                         "-fx-border-color: #800080; -fx-border-width: 2px;"
         );
-        grid.add(pantalla, 0, 0, 4, 1);
+        grid.add(pantalla, 0, 0, 4, 1); // Agregar el campo de texto al grid
 
+        // Creación de botones
         Button[] botones = new Button[18];
         String[] nombresBotones = {
                 "7", "8", "9", "/",
@@ -56,7 +59,7 @@ public class Interfaz extends Application {
 
         for (int i = 0; i < 18; i++) {
             botones[i] = new Button(nombresBotones[i]);
-            botones[i].setPrefSize(50, 50);
+            botones[i].setPrefSize(50, 50); // Tamaño del botón
             BackgroundFill buttonBackgroundFill = new BackgroundFill(Color.BLACK, new CornerRadii(5), Insets.EMPTY);
             Background buttonBackground = new Background(buttonBackgroundFill);
             botones[i].setBackground(buttonBackground);
@@ -93,41 +96,56 @@ public class Interfaz extends Application {
 
         botones[17].setOnAction(e -> borrarCaracter());
 
+        // Agregar botones al grid
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 grid.add(botones[i * 4 + j], j, i + 1);
             }
         }
 
+        // Colocar el botón "CAM" en las celdas adecuadas
         grid.add(botones[16], 0, 5, 2, 1);
         grid.add(botones[17], 2, 5, 2, 1);
 
-        Scene scene = new Scene(grid, 210, 300, Color.BLACK);
+        // Crear la escena principal
+        Scene scene = new Scene(grid, 210, 300, Color.BLACK); // Tamaño de la ventana
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    // Métodos de operación de la calculadora
+
     private void botonNumero(String digito) {
+        // Verificar si se ha iniciado una nueva operación
         if (nuevaOperacion) {
+            // Limpiar el campo de texto y marcar que no es una nueva operación
             pantalla.clear();
             nuevaOperacion = false;
         }
+        // Agregar el dígito al campo de texto
         pantalla.appendText(digito);
     }
 
     private void botonOperador(String op) {
+        // Verificar si no es una nueva operación
         if (!nuevaOperacion) {
+            // Calcular el resultado si ya se ingresó un operador y otro número
             calcularResultado();
+            // Almacenar el número actual en 'numero1' y el operador en 'operador'
             numero1 = Double.parseDouble(pantalla.getText());
             operador = op;
+            // Marcar que se ha iniciado una nueva operación
             nuevaOperacion = true;
         }
     }
 
     private void calcularResultado() {
+        // Verificar si no es una nueva operación
         if (!nuevaOperacion) {
+            // Obtener el segundo número del campo de texto
             double numero2 = Double.parseDouble(pantalla.getText());
             double resultado = 0;
+            // Realizar la operación adecuada según el operador almacenado en 'operador'
             switch (operador) {
                 case "+":
                     resultado = numero1 + numero2;
@@ -139,18 +157,28 @@ public class Interfaz extends Application {
                     resultado = numero1 * numero2;
                     break;
                 case "/":
-                    resultado = numero1 / numero2;
+                    // Verificar la división por cero antes de realizar la operación
+                    if (numero2 != 0) {
+                        resultado = numero1 / numero2;
+                    } else {
+                        // Manejar el caso de división por cero mostrando un mensaje de error
+                        pantalla.setText("Error: División por cero");
+                        nuevaOperacion = true; // Marcar que se ha iniciado una nueva operación
+                        return; // Salir de la función sin calcular el resultado
+                    }
                     break;
             }
+            // Mostrar el resultado en el campo de texto y marcar que se ha iniciado una nueva operación
             pantalla.setText(String.valueOf(resultado));
             nuevaOperacion = true;
         }
     }
 
+
+    // Método para abrir la ventana de ReconocimientoFacial
     private void abrirReconocimientoFacial() {
         try {
             // Crear la instancia de ReconocimientoFacial y llamar a su método start
-
             ReconocimientoFacial reconocimientoFacial = new ReconocimientoFacial();
             Stage stage = new Stage();
             reconocimientoFacial.start(stage);
@@ -159,26 +187,35 @@ public class Interfaz extends Application {
         }
     }
 
-
     private void borrarCaracter() {
+        // Obtener el contenido actual del campo de texto
         String contenido = pantalla.getText();
+
+        // Verificar si el campo de texto no está vacío
         if (!contenido.isEmpty()) {
+            // Eliminar el último carácter del contenido
             pantalla.setText(contenido.substring(0, contenido.length() - 1));
         }
     }
 
     private void botonPresionado(String digito) {
+        // Verificar si se ha iniciado una nueva operación
         if (nuevaOperacion) {
+            // Limpiar el campo de texto y marcar que no es una nueva operación
             pantalla.clear();
             nuevaOperacion = false;
         }
 
+        // Comprobar qué botón se ha presionado
         if (digito.equals("AC")) {
+            // Si es el botón "AC" (borrar todo), limpiar el campo de texto
             pantalla.clear();
         } else if (digito.equals("DEL")) {
+            // Si es el botón "DEL" (borrar un carácter), llamar a la función borrarCaracter()
             borrarCaracter();
         } else {
+            // Si es cualquier otro dígito o operador, agregarlo al campo de texto
             pantalla.appendText(digito);
         }
-    }
-}
+    }}
+
