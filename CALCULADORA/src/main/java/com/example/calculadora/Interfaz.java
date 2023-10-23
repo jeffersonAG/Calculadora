@@ -1,5 +1,4 @@
 package com.example.calculadora;
-
 import com.example.calculadora.Arbol.ArbolBinario;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -11,6 +10,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+/**
+ * Clase que representa la interfaz de una calculadora de expresiones matemáticas
+ * utilizando un árbol binario para evaluar las expresiones.
+ */
 public class Interfaz extends Application {
 
     private TextField textField;
@@ -30,13 +33,12 @@ public class Interfaz extends Application {
         botones.setHgap(10);
         botones.setVgap(10);
 
-        // Crear botones numéricos, de operadores, paréntesis, Borrar y "="
         String[] teclas = {
-                "C", "(", ")", "/",
+                "C", "(", ")", "/", "%",
                 "7", "8", "9", "*",
                 "4", "5", "6", "-",
                 "1", "2", "3", "+",
-                "0", "←", "="
+                "0", "←", "=", "^" // Agregar el operador de elevación
         };
 
         int row = 0;
@@ -60,7 +62,7 @@ public class Interfaz extends Application {
         root.setAlignment(Pos.CENTER);
         root.getChildren().addAll(textField, botones);
 
-        Scene scene = new Scene(root, 300, 350);
+        Scene scene = new Scene(root, 350, 400);
         primaryStage.setTitle("Calculadora de Árbol de Expresión");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -70,6 +72,11 @@ public class Interfaz extends Application {
         launch(args);
     }
 
+    /**
+     * Procesa una tecla presionada en la calculadora y actualiza el campo de texto.
+     *
+     * @param tecla La tecla presionada.
+     */
     private void procesarTecla(String tecla) {
         if (tecla.equals("C")) {
             textField.setText("");
