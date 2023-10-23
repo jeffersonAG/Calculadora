@@ -1,9 +1,5 @@
 package com.example.calculadora;
 
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.videoio.VideoCapture;
-import org.opencv.videoio.Videoio;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -13,6 +9,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.videoio.VideoCapture;
+import org.opencv.videoio.Videoio;
 
 public class ReconocimientoFacial extends Application {
 
@@ -22,8 +25,6 @@ public class ReconocimientoFacial extends Application {
     public ReconocimientoFacial() {
         // Cargar la biblioteca OpenCV (Open Source Computer Vision Library).
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-
-
     }
 
     @Override
@@ -68,7 +69,6 @@ public class ReconocimientoFacial extends Application {
         });
         buttonContainer.getChildren().add(stopButton);
 
-
         // Agregar el VBox al StackPane principal.
         root.getChildren().addAll(buttonContainer);
 
@@ -87,24 +87,40 @@ public class ReconocimientoFacial extends Application {
     // Método para capturar y mostrar el flujo de la cámara.
     private void captureAndShowVideo() {
         Mat frame = new Mat();
+
         while (true) {
             // Leer un fotograma desde la cámara.
             if (!videoCapture.read(frame)) {
                 break; // Salir del bucle si no se pudo leer un fotograma.
             }
+
             // Convertir el fotograma en una imagen de JavaFX y mostrarlo en el ImageView.
             Image image = Utils.mat2Image(frame);
             imageView.setImage(image);
+
+            // Realizar el procesamiento de imagen para la detección de texto aquí
+            detectarTexto(frame);
+
+            // Mostrar la imagen con la detección de texto
+            Image resultImage = Utils.mat2Image(frame);
+            imageView.setImage(resultImage);
         }
+
         // Liberar los recursos de la cámara cuando se sale del bucle.
         videoCapture.release();
     }
 
-    // Método para detener la aplicación.
-    private void stopApplication(Stage primaryStage) {
-        // Liberar los recursos de la cámara y cerrar la ventana principal de JavaFX.
-        videoCapture.release();
-        primaryStage.close();
+    // Método para detectar texto en un fotograma
+    private void detectarTexto(Mat frame) {
+        // Implementa tu lógica de detección de texto aquí.
+        // Puedes utilizar técnicas de procesamiento de imágenes para identificar regiones de texto.
+        // Por ejemplo, puedes buscar contornos de texto o aplicar filtros para resaltar el texto.
+
+        // En este ejemplo, simplemente dibujaremos un cuadro alrededor de una región de ejemplo.
+        Imgproc.rectangle(frame, new Point(100, 100), new Point(300, 200), new Scalar(0, 255, 0), 2);
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
