@@ -7,7 +7,6 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -45,7 +44,7 @@ public class Interfaz extends Application {
                 "7", "8", "9", "*",
                 "4", "5", "6", "-",
                 "1", "2", "3", "+",
-                "0", "←", "=", "^", "CAM","M.log" // Agregar el botón "CAM"
+                "0", "←", "=", "^", "CAM","M.log","BIN" // Agregar el botón "CAM"
         };
 
         int row = 0;
@@ -120,6 +119,9 @@ public class Interfaz extends Application {
     }
     
     private void irACompuertas() {
+        Stage stage = (Stage) textField.getScene().getWindow();
+        stage.close();
+    	
     	Compuertas segundaVentana=new Compuertas(primaryStage);
     	segundaVentana.show();
     }
@@ -131,6 +133,7 @@ public class Interfaz extends Application {
     		tree=new ArbolCompuertas();
     		VBox root1 = new VBox(10);
     		root1.setAlignment(Pos.CENTER);
+            root1.setStyle("-fx-background-color: black;");
     		textField = new TextField();
             textField.setPromptText("0");
             textField.setFont(Font.font(18));
@@ -147,7 +150,7 @@ public class Interfaz extends Application {
                     "7", "8", "9", "OR",
                     "4", "5", "6", "XOR",
                     "1", "2", "3", "NOT",
-                    "0", "←", "=", "DEC"
+                    "0", "←", "=", "DEC", "CAM","M.log",
             };
 
             int row = 0;
@@ -160,7 +163,11 @@ public class Interfaz extends Application {
                     boton.setFont(Font.font(18));
                     boton.setOnAction(e -> {
                     	this.close();
-                    	Interfaz.show();
+
+                        // Crear una nueva instancia de la clase Interfaz
+                        Interfaz interfaz = new Interfaz();
+                        Stage newStage = new Stage();
+                        interfaz.start(newStage);
                     });
                     botones.add(boton, col, row);
                 } else{
@@ -185,7 +192,7 @@ public class Interfaz extends Application {
     		StackPane root= new StackPane();
     		root.getChildren().addAll(root1);
     		
-    		Scene scene=new Scene(root,300,350);
+    		Scene scene=new Scene(root,350,400);
     		
     		this.setTitle("Calculadora");
     		this.setScene(scene);
