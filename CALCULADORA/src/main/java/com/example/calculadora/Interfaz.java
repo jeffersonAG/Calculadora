@@ -1,4 +1,5 @@
 package com.example.calculadora;
+
 import com.example.calculadora.Arbol.ArbolBinario;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -38,7 +39,7 @@ public class Interfaz extends Application {
                 "7", "8", "9", "*",
                 "4", "5", "6", "-",
                 "1", "2", "3", "+",
-                "0", "←", "=", "^" // Agregar el operador de elevación
+                "0", "←", "=", "^", "CAM","M.log" // Agregar el botón "CAM"
         };
 
         int row = 0;
@@ -60,6 +61,7 @@ public class Interfaz extends Application {
 
         VBox root = new VBox(10);
         root.setAlignment(Pos.CENTER);
+        root.setStyle("-fx-background-color: black;");
         root.getChildren().addAll(textField, botones);
 
         Scene scene = new Scene(root, 350, 400);
@@ -72,11 +74,6 @@ public class Interfaz extends Application {
         launch(args);
     }
 
-    /**
-     * Procesa una tecla presionada en la calculadora y actualiza el campo de texto.
-     *
-     * @param tecla La tecla presionada.
-     */
     private void procesarTecla(String tecla) {
         if (tecla.equals("C")) {
             textField.setText("");
@@ -90,11 +87,20 @@ public class Interfaz extends Application {
             } catch (Exception e) {
                 textField.setText("Error");
             }
-        } else if (tecla.equals("←")) { // Botón de Borrar
+        } else if (tecla.equals("←")) {
             String textoActual = textField.getText();
             if (!textoActual.isEmpty()) {
                 textField.setText(textoActual.substring(0, textoActual.length() - 1));
             }
+        } else if (tecla.equals("CAM")) {
+            // Cerrar la ventana actual de Interfaz
+            Stage stage = (Stage) textField.getScene().getWindow();
+            stage.close();
+
+            // Crear una nueva instancia de la clase ReconocimientoFacial
+            ReconocimientoFacial reconocimientoFacial = new ReconocimientoFacial();
+            Stage newStage = new Stage();
+            reconocimientoFacial.start(newStage);
         } else {
             textField.appendText(tecla);
         }
