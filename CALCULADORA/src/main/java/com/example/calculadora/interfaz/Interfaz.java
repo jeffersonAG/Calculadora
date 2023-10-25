@@ -1,8 +1,9 @@
-package com.example.calculadora;
+package com.example.calculadora.interfaz;
 
 import com.example.calculadora.Arbol.ArbolBinario;
 import com.example.calculadora.Arbol.ArbolCompuertas;
 
+import com.example.calculadora.reconocimiento_de_patrones.ReconocimientoFacial;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,7 +14,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 /**
  * Clase que representa la interfaz de una calculadora de expresiones matemáticas
  * utilizando un árbol binario para evaluar las expresiones.

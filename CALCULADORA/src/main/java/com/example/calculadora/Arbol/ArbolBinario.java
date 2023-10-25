@@ -100,7 +100,7 @@ public class ArbolBinario {
     public void construirArbol(String expresion) {
         expresion = expresion.replaceAll(" ", "");
         Stack<Nodo> pilaNodos = new Stack<>();
-        Stack<Character> pilaOperadores = new Stack();
+        Stack<Character> pilaOperadores = new Stack<>();
 
         for (int i = 0; i < expresion.length(); i++) {
             char c = expresion.charAt(i);
@@ -142,14 +142,27 @@ public class ArbolBinario {
      * @param pilaOperadores  La pila de operadores.
      */
     private void procesarOperador(Stack<Nodo> pilaNodos, Stack<Character> pilaOperadores) {
-        char operador = pilaOperadores.pop();
-        Nodo derecho = pilaNodos.pop();
-        Nodo izquierdo = pilaNodos.pop();
-        Nodo nuevoNodo = new Nodo(operador);
-        nuevoNodo.izquierda = izquierdo;
-        nuevoNodo.derecha = derecho;
-        pilaNodos.push(nuevoNodo);
+        if (!pilaOperadores.isEmpty()) {
+            char operador = pilaOperadores.pop();
+            if (!pilaNodos.isEmpty()) {
+                Nodo derecho = pilaNodos.pop();
+                if (!pilaNodos.isEmpty()) {
+                    Nodo izquierdo = pilaNodos.pop();
+                    Nodo nuevoNodo = new Nodo(operador);
+                    nuevoNodo.izquierda = izquierdo;
+                    nuevoNodo.derecha = derecho;
+                    pilaNodos.push(nuevoNodo);
+                } else {
+                    throw new IllegalArgumentException("Faltan operandos para el operador: " + operador);
+                }
+            } else {
+                throw new IllegalArgumentException("Faltan operandos para el operador: " + operador);
+            }
+        } else {
+            throw new IllegalArgumentException("No hay operadores para procesar.");
+        }
     }
+
 
     /**
      * Verifica si un carácter es un operador válido.

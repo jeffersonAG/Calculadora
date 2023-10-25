@@ -1,5 +1,7 @@
-package com.example.calculadora;
+package com.example.calculadora.reconocimiento_de_patrones;
 
+import com.example.calculadora.Utils;
+import com.example.calculadora.interfaz.Interfaz;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -16,7 +18,6 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
 import org.opencv.videoio.Videoio;
-
 public class ReconocimientoFacial extends Application {
 
     private ImageView imageView;

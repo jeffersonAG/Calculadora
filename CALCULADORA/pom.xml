@@ -24,7 +24,6 @@
       <artifactId>javafx-fxml</artifactId>
       <version>20.0.1</version>
     </dependency>
-    
 
 
 <dependency>
@@ -60,7 +59,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.example.calculadora/com.example.calculadora.Interfaz</mainClass>
+              <mainClass>com.example.calculadora/com.example.calculadora.interfaz.Interfaz</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
