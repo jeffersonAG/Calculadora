@@ -18,7 +18,6 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.videoio.VideoCapture;
 import org.opencv.videoio.Videoio;
-
 public class ReconocimientoFacial extends Application {
 
     private ImageView imageView;
@@ -122,4 +121,7 @@ public class ReconocimientoFacial extends Application {
         Imgproc.rectangle(frame, new Point(100, 100), new Point(300, 200), new Scalar(0, 255, 0), 2);
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

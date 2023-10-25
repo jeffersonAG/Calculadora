@@ -1,9 +1,7 @@
-package com.example.calculadora.interfaz;
+package com.example.calculadora.Interfaz;
 
 import com.example.calculadora.Arbol.ArbolBinario;
 import com.example.calculadora.Arbol.ArbolCompuertas;
-
-import com.example.calculadora.reconocimiento_de_patrones.ReconocimientoFacial;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,6 +12,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
 /**
  * Clase que representa la interfaz de una calculadora de expresiones matemáticas
  * utilizando un árbol binario para evaluar las expresiones.
@@ -90,34 +93,34 @@ public class Interfaz extends Application {
             textField.setText("");
         } else if (tecla.equals("=")) {
             String expresion = textField.getText();
-            arbol.construirArbol(expresion);
 
-            try {
-                int resultado = arbol.evaluar();
+            // Establece una conexión con el servidor
+            try (Socket socket = new Socket("localhost", 12345)) {
+                // Crea flujos de entrada y salida
+                ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());
+                ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
+
+                // Envía la operación matemática al servidor
+                salida.writeObject(expresion);
+
+                // Recibe el resultado del servidor
+                int resultado = (int) entrada.readObject();
                 textField.setText(String.valueOf(resultado));
             } catch (Exception e) {
-                textField.setText("Error");
+                textField.setText("Error al conectar con el servidor");
+                e.printStackTrace();
             }
         } else if (tecla.equals("←")) {
             String textoActual = textField.getText();
             if (!textoActual.isEmpty()) {
                 textField.setText(textoActual.substring(0, textoActual.length() - 1));
             }
-
-        } else if (tecla.equals("CAM")) {
-            // Cerrar la ventana actual de Interfaz
-            Stage stage = (Stage) textField.getScene().getWindow();
-            stage.close();
-
-            // Crear una nueva instancia de la clase ReconocimientoFacial
-            ReconocimientoFacial reconocimientoFacial = new ReconocimientoFacial();
-            Stage newStage = new Stage();
-            reconocimientoFacial.start(newStage);
         } else {
             textField.appendText(tecla);
-        } 
+        }
     }
-    
+
+
     private void irACompuertas() {
         Stage stage = (Stage) textField.getScene().getWindow();
         stage.close();

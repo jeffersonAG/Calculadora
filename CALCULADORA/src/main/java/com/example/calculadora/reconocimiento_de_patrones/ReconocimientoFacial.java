@@ -1,7 +1,7 @@
-package com.example.calculadora.reconocimiento_de_patrones;
+package com.example.calculadora.Reconocimiento_de_Patrones;
 
+import com.example.calculadora.Interfaz.Interfaz;
 import com.example.calculadora.Utils;
-import com.example.calculadora.interfaz.Interfaz;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;

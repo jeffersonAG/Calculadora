@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Servidor {
+public class servidor {
 
     public static void main(String[] args) {
         final int puerto = 12345; // Puerto en el que escuchará el servidor

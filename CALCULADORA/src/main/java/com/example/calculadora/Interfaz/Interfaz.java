@@ -2,7 +2,6 @@ package com.example.calculadora.Interfaz;
 
 import com.example.calculadora.Arbol.ArbolBinario;
 import com.example.calculadora.Arbol.ArbolCompuertas;
-
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -48,7 +47,7 @@ public class Interfaz extends Application {
                 "7", "8", "9", "*",
                 "4", "5", "6", "-",
                 "1", "2", "3", "+",
-                "0", "←", "=", "^", "CAM","BIN" // Agregar el botón "CAM"
+                "0", "←", "=", "^", "CAM","M.log","BIN" // Agregar el botón "CAM"
         };
 
         int row = 0;

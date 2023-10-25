@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86811a2e-f536-4df9-9455-d545a3efaef4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Servidor/Servidor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/CalculadoraPrincipal_structure.puml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Interfaz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Interfaz/Interfaz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/ReconocimientoFacial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Reconocimiento_de_Patrones/ReconocimientoFacial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Interfaz/Interfaz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Interfaz/Interfaz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Reconocimiento_de_Patrones/ReconocimientoFacial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Reconocimiento_de_Patrones/ReconocimientoFacial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Servidor/Servidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Servidor/Servidor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/reconocimiento_de_patrones/Utils.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/calculadora/Arbol/ArbolBinario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/calculadora/Arbol/ArbolBinario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/calculadora/Interfaz/Interfaz$Compuertas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/calculadora/Interfaz/Interfaz$Compuertas.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/calculadora/Interfaz/Interfaz.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/calculadora/Interfaz/Interfaz.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/calculadora/Reconocimiento_de_Patrones/ReconocimientoFacial.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/calculadora/Reconocimiento_de_Patrones/ReconocimientoFacial.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/calculadora/Servidor/Servidor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/calculadora/Servidor/Servidor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,9 +63,9 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "jefferson",
     "last_opened_file_path": "C:/opencv/build/java/x64/opencv_java480.dll",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15054744",
     "project.structure.side.proportion": "0.34086022",
     "settings.editor.selected.configurable": "preferences.pluginManager"
@@ -73,20 +80,7 @@
       <recent name="C:\Users\gutie\OneDrive\Documentos\GitHub\Calculadora\CALCULADORA\src\main\java\com\example\calculadora\servidor" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Interfaz (1)">
-    <configuration name="ArbolCompuertas" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.calculadora.Arbol.ArbolCompuertas" />
-      <module name="CALCULADORA" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.calculadora.Arbol.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Interfaz">
     <configuration name="Interfaz (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.calculadora.Interfaz.Interfaz" />
       <module name="CALCULADORA" />
@@ -126,19 +120,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReconocimientoFacial" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.calculadora.ReconocimientoFacial" />
-      <module name="CALCULADORA" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.calculadora.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Servidor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.calculadora.Servidor.Servidor" />
       <module name="CALCULADORA" />
@@ -152,20 +133,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="servidor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.calculadora.Servidor.servidor" />
+      <module name="CALCULADORA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.calculadora.Servidor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
+      <item itemvalue="Application.servidor" />
       <item itemvalue="Application.Interfaz (1)" />
       <item itemvalue="Application.Interfaz (2)" />
       <item itemvalue="Application.Servidor" />
-      <item itemvalue="Application.ArbolCompuertas" />
       <item itemvalue="Application.Interfaz" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Interfaz" />
+        <item itemvalue="Application.servidor" />
         <item itemvalue="Application.Interfaz (1)" />
         <item itemvalue="Application.Servidor" />
         <item itemvalue="Application.Interfaz (2)" />
-        <item itemvalue="Application.Interfaz" />
-        <item itemvalue="Application.ArbolCompuertas" />
       </list>
     </recent_temporary>
   </component>
