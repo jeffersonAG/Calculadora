@@ -1,4 +1,4 @@
-package com.example.calculadora.Interfaz;
+package com.example.calculadora.interfaz;
 
 import com.example.calculadora.Arbol.ArbolBinario;
 import com.example.calculadora.Arbol.ArbolCompuertas;
@@ -124,14 +124,14 @@ public class Interfaz extends Application {
     private void irACompuertas() {
         Stage stage = (Stage) textField.getScene().getWindow();
         stage.close();
-    	
+
     	Compuertas segundaVentana=new Compuertas(primaryStage);
     	segundaVentana.show();
     }
-    
+
     public class Compuertas extends Stage{
     	private ArbolCompuertas tree;
-    	
+
     	public Compuertas(Stage Interfaz) {
     		tree=new ArbolCompuertas();
     		VBox root1 = new VBox(10);
@@ -141,7 +141,7 @@ public class Interfaz extends Application {
             textField.setPromptText("0");
             textField.setFont(Font.font(18));
             textField.setEditable(false);
-    		
+
             GridPane botones = new GridPane();
             botones.setAlignment(Pos.CENTER);
             botones.setHgap(10);
@@ -189,18 +189,18 @@ public class Interfaz extends Application {
                    tecla.equals("3") || tecla.equals("2")) {
                 	boton.setDisable(true);
                 }
-                
+
             }
             root1.getChildren().addAll(textField,botones);
     		StackPane root= new StackPane();
     		root.getChildren().addAll(root1);
-    		
+
     		Scene scene=new Scene(root,350,400);
-    		
+
     		this.setTitle("Calculadora");
     		this.setScene(scene);
-    		
-    		
+
+
     	}
     	private void procesar(String tecla) {
             if (tecla.equals("C")) {
