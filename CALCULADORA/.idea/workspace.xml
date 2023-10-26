@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86811a2e-f536-4df9-9455-d545a3efaef4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Reconocimiento_de_Patrones/escaneo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Interfaz/Interfaz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Interfaz/Interfaz.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Reconocimiento_de_Patrones/ReconocimientoFacial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Reconocimiento_de_Patrones/ReconocimientoFacial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/capturas/captura1.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/calculadora/Interfaz/Interfaz$Compuertas.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/calculadora/Interfaz/Interfaz$Compuertas.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/calculadora/Interfaz/Interfaz.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/calculadora/Interfaz/Interfaz.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/calculadora/Reconocimiento_de_Patrones/ReconocimientoFacial.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/calculadora/Reconocimiento_de_Patrones/ReconocimientoFacial.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/calculadora/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/calculadora/Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +72,20 @@
       <recent name="C:\Users\gutie\OneDrive\Documentos\GitHub\Calculadora\CALCULADORA\src\main\java\com\example\calculadora\servidor" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ReconocimientoFacial">
+  <component name="RunManager" selected="Application.Interfaz">
+    <configuration name="Interfaz" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.calculadora.interfaz.Interfaz" />
+      <module name="CALCULADORA" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.calculadora.interfaz.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ReconocimientoFacial" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.calculadora.reconocimiento_de_patrones.ReconocimientoFacial" />
       <module name="CALCULADORA" />
@@ -118,19 +125,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="escaneo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.calculadora.reconocimiento_de_patrones.escaneo" />
-      <module name="CALCULADORA" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.calculadora.reconocimiento_de_patrones.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="servidor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.calculadora.Servidor.servidor" />
       <module name="CALCULADORA" />
@@ -148,16 +142,16 @@
       <item itemvalue="Application.ReconocimientoFacial" />
       <item itemvalue="Application.com.example.calculadora.interfaz.Interfaz" />
       <item itemvalue="Application.com.example.calculadora.interfaz.Interfaz (1)" />
-      <item itemvalue="Application.escaneo" />
       <item itemvalue="Application.servidor" />
+      <item itemvalue="Application.Interfaz" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Interfaz" />
+        <item itemvalue="Application.com.example.calculadora.interfaz.Interfaz" />
         <item itemvalue="Application.ReconocimientoFacial" />
         <item itemvalue="Application.com.example.calculadora.interfaz.Interfaz (1)" />
-        <item itemvalue="Application.com.example.calculadora.interfaz.Interfaz" />
         <item itemvalue="Application.servidor" />
-        <item itemvalue="Application.escaneo" />
       </list>
     </recent_temporary>
   </component>
