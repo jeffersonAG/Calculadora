@@ -1,4 +1,4 @@
-package com.example.calculadora.interfaz;
+package com.example.calculadora.Interfaz;
 
 /**
  * Clase que representa la interfaz de una calculadora de expresiones matemáticas
@@ -8,7 +8,7 @@ package com.example.calculadora.interfaz;
 import com.example.calculadora.Arbol.ArbolBinario;
 import com.example.calculadora.Arbol.ArbolCompuertas;
 import com.example.calculadora.Servidor.servidor;
-import com.example.calculadora.reconocimiento_de_patrones.ReconocimientoFacial;
+import com.example.calculadora.Reconocimiento_de_Patrones.ReconocimientoFacial;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -112,7 +112,7 @@ public class Interfaz extends Application {
         if (tecla.equals("C")) {
             textField.setText("");
         } else if (tecla.equals("=")) {
-            String expresion = textField.getText();
+        	 String expresion = "MATH: " + textField.getText();
 
             // Establece una conexión con el servidor
             try (Socket socket = new Socket("localhost", 12345)) {
@@ -176,7 +176,7 @@ public class Interfaz extends Application {
 
             String[] teclas = {
                     "C", "(", ")", "AND",
-                    "7", "8", "9", "OR",
+                    "7", "8", "9", ".OR",
                     "4", "5", "6", "XOR",
                     "1", "2", "3", "NOT",
                     "0", "←", "=", "DEC", "CAM", "M.log",
@@ -229,15 +229,22 @@ public class Interfaz extends Application {
             if (tecla.equals("C")) {
                 textField.setText("");
             } else if (tecla.equals("=")) {
-                String expresion = textField.getText();
-                tree.construirArbol(expresion);
-                try {
-                    boolean resultado = tree.evaluar();
-                    textField.setText(resultado ? "1" : "0");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    textField.setText("Error" + e.getMessage());
-                }
+            	 String expresion ="LOGIC: " + textField.getText();
+                 try (Socket socket = new Socket("localhost", 12345)) {
+                     // Crea flujos de entrada y salida
+                     ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());
+                     ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
+
+                     // Envía la operación matemática al servidor
+                     salida.writeObject(expresion);
+
+                     // Recibe el resultado del servidor
+                     boolean resultado = (boolean) entrada.readObject();
+                     textField.setText(String.valueOf(resultado));
+                 } catch (Exception e) {
+                     textField.setText("Error al conectar con el servidor");
+                     e.printStackTrace();
+                 }
             } else if (tecla.equals("←")) {
                 String textoActual = textField.getText();
                 if (!textoActual.isEmpty()) {

@@ -1,6 +1,8 @@
 package com.example.calculadora.Servidor;
 
 import com.example.calculadora.Arbol.ArbolBinario;
+import com.example.calculadora.Arbol.ArbolCompuertas;
+import com.example.calculadora.CSV.Registro;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -25,19 +27,39 @@ public class servidor {
                 // Crear flujos de entrada y salida
                 ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
                 ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());
-
+                
                 try {
                     // Recibir la operación matemática desde el cliente
                     String operacion = (String) entrada.readObject();
+                    if(operacion.startsWith("MATH: ")) {
+                    	operacion=operacion.substring("MATH: ".length());
+                        // Crear un objeto ArbolBinario y evaluar la operación
+                        ArbolBinario arbol = new ArbolBinario();
+                        arbol.construirArbol(operacion);
+                        int resultado = arbol.evaluar();
 
-                    // Crear un objeto ArbolBinario y evaluar la operación
-                    ArbolBinario arbol = new ArbolBinario();
-                    arbol.construirArbol(operacion);
-                    int resultado = arbol.evaluar();
+                        // Enviar el resultado de vuelta al cliente
+                        salida.writeObject(resultado);
+                        System.out.println("Resultado enviado al cliente: " + resultado);
+                        String filePath= "./history.csv";
+                        Registro csv=new Registro(filePath);
+                        csv.agregarRegistro(operacion, String.valueOf(resultado));
+                    } else if(operacion.startsWith("LOGIC: ")) {
+                    	operacion=operacion.substring("LOGIC: ".length());
+                    	System.out.println(operacion);
+                    	// Crear un objeto ArbolCompuertas y evaluar la operación
+                        ArbolCompuertas arbol = new ArbolCompuertas();
+                        arbol.construirArbol(operacion);
+                        boolean resultado = arbol.evaluar();
 
-                    // Enviar el resultado de vuelta al cliente
-                    salida.writeObject(resultado);
-                    System.out.println("Resultado enviado al cliente: " + resultado);
+                        // Enviar el resultado de vuelta al cliente
+                        salida.writeObject(resultado);
+                        System.out.println("Resultado enviado al cliente: " + resultado);
+                        String filePath= "./history.csv";
+                        Registro csv=new Registro(filePath);
+                        csv.agregarRegistro(operacion, String.valueOf(resultado));
+                    }
+
                 } catch (Exception e) {
                     System.err.println("Error al procesar la operación: " + e.getMessage());
                     salida.writeObject("Error");

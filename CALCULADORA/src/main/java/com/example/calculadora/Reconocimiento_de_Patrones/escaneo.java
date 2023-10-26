@@ -1,4 +1,4 @@
-package com.example.calculadora.reconocimiento_de_patrones;
+package com.example.calculadora.Reconocimiento_de_Patrones;
 
 import com.example.calculadora.Utils;
 import javafx.application.Application;

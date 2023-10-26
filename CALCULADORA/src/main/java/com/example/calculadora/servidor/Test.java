@@ -1,4 +1,4 @@
-package com.example.calculadora.servidor;
+package com.example.calculadora.Servidor;
 
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;

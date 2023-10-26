@@ -25,7 +25,23 @@
       <version>20.0.1</version>
     </dependency>
 
+   <dependency>
+        <groupId>net.sourceforge.tess4j</groupId>
+        <artifactId>tess4j</artifactId>
+        <version>5.8.0</version> 
+    </dependency>
 
+<dependency>
+    <groupId>org.openpnp</groupId>
+    <artifactId>opencv</artifactId>
+    <version>4.7.0-0</version>
+</dependency>
+
+<dependency>
+    <groupId>com.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>5.8</version>
+</dependency>
 
 <dependency>
       <groupId>org.junit.jupiter</groupId>

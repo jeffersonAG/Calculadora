@@ -46,7 +46,7 @@ public class ArbolCompuertas {
 				return evaluarAND(izquierda,derecha);
 			case "XOR":
 				return evaluarXOR(izquierda,derecha);
-			case "OR":
+			case ".OR":
 				return evaluarOR(izquierda,derecha);
 			case "NOT":
 				return !derecha;
@@ -81,7 +81,7 @@ public class ArbolCompuertas {
 		int nivel=0;
 		int index=-1;
 		int prioridad=0;
-		String[] operadores= {"AND","XOR","OR","NOT"};
+		String[] operadores= {"AND","XOR",".OR","NOT"};
 		for(int i=expresion.length()-1;i>=0;i--) {
 			String c = expresion.substring(i,i+1);
 			if(c.equals(")")) {
