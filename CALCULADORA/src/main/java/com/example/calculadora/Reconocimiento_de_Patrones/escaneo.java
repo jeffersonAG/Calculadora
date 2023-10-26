@@ -12,8 +12,6 @@ import javafx.stage.Stage;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 import org.opencv.core.Mat;
-import org.opencv.imgcodecs.Imgcodecs;
-import org.opencv.imgproc.Imgproc;
 
 import java.awt.*;
 import java.io.File;
@@ -59,50 +57,38 @@ public class escaneo extends Application {
             // Cargar la imagen seleccionada en un objeto de tipo Image
             Image image = new Image(archivo.toURI().toString());
 
-            // Convertir el Image a una imagen OpenCV (Mat)
-            Mat matImage = Utils.imageToMat(image);
-
-            // Aquí puedes usar matImage para realizar el escaneo de la imagen
-            // Puedes llamar a tus métodos de procesamiento de imágenes OpenCV aquí
+            // Mostrar la imagen en el ImageView
+            imageView.setImage(image);
         }
     }
-
 
     private void escanearImagen() {
         // Obtener la imagen actual
         Image image = imageView.getImage();
         if (image == null) {
+            System.out.println("No se ha seleccionado una imagen.");
             return;
         }
 
         // Convertir la imagen de JavaFX a una imagen OpenCV (Mat)
         Mat matImage = Utils.imageToMat(image);
 
-
-        // Aplicar preprocesamiento de imágenes (por ejemplo, escala de grises y umbralización)
-        Imgproc.cvtColor(matImage, matImage, Imgproc.COLOR_BGR2GRAY);
-        Imgproc.threshold(matImage, matImage, 0, 255, Imgproc.THRESH_BINARY | Imgproc.THRESH_OTSU);
-
-        // Guardar la imagen preprocesada temporalmente
-        File tempFile = new File("temp.png");
-        Imgcodecs.imwrite(tempFile.getAbsolutePath(), matImage);
-
-        // Realizar OCR en la imagen preprocesada
+        // Inicializar el motor Tesseract para OCR
         Tesseract tesseract = new Tesseract();
+        tesseract.setLanguage("eng"); // Establecer el idioma (puedes cambiarlo según tus necesidades)
+
         try {
-            String resultado = tesseract.doOCR(tempFile);
+            // Realizar OCR en la imagen
+            String resultado = tesseract.doOCR(Utils.matToBufferedImage(matImage));
+
+            // Mostrar el texto detectado en la consola
             System.out.println("Texto detectado: " + resultado);
-
-            // Aquí puedes agregar la lógica para detectar si el texto contiene una operación matemática
-            // Por ejemplo, puedes usar expresiones regulares o procesamiento de texto.
-
         } catch (TesseractException e) {
             e.printStackTrace();
-        } finally {
-            // Eliminar el archivo temporal
-            tempFile.delete();
+            System.err.println("Error al realizar OCR: " + e.getMessage());
         }
     }
+
 
 
     private void abrirCarpetaContenedora(File carpeta) {
