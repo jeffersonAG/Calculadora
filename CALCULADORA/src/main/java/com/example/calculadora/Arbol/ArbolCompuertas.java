@@ -1,15 +1,28 @@
 package com.example.calculadora.Arbol;
 
+/**
+ * Clase que representa un nodo en un árbol de compuertas lógicas.
+ */
+
 class NodoCompuertas {
     String valor;
     NodoCompuertas izquierda;
 	NodoCompuertas derecha;
 
+    /**
+     * Constructor para crear un nodo con un valor dado.
+     * @param valor El valor asociado al nodo.
+     */
+	
     public NodoCompuertas(String valor) {
         this.valor = valor;
         izquierda = derecha = null;
     }
 }
+
+/**
+ * Clase que representa un árbol de compuertas lógicas.
+ */
 
 public class ArbolCompuertas {
 	NodoCompuertas raiz;
@@ -18,12 +31,24 @@ public class ArbolCompuertas {
 		raiz=null;
 	}
 	
+	/**
+     * Evalúa el árbol de compuertas lógicas y devuelve el resultado.
+     * @return El resultado de evaluar el árbol de compuertas.
+     * @throws IllegalStateException Si el árbol está vacío.
+     */
+	
 	public boolean evaluar() {
 		if (raiz==null) {
 			throw new IllegalStateException("El árbol está vacío.");
         }
         return evaluarRecursivamente(raiz);
 	}
+	
+    /**
+     * Evalúa recursivamente el árbol de compuertas lógicas.
+     * @param nodo El nodo actual que se está evaluando.
+     * @return El resultado de evaluar el subárbol con el nodo actual como raíz.
+     */
 	
 	private boolean evaluarRecursivamente(NodoCompuertas nodo) {
 		if(nodo.izquierda==null && nodo.derecha==null) {
@@ -72,10 +97,21 @@ public class ArbolCompuertas {
 		ArbolCompuertas tree=new ArbolCompuertas();
 	}
 	
+    /**
+     * Construye el árbol de compuertas lógicas a partir de una expresión.
+     * @param expresion La expresión que representa el árbol.
+     */
+	
 	public void construirArbol(String expresion) {
 		expresion=expresion.replaceAll(" ", "");
 		raiz=construirArbolRecursivo(expresion);
 	}
+	
+    /**
+     * Construye el árbol de compuertas lógicas recursivamente.
+     * @param expresion La expresión que representa el árbol.
+     * @return El nodo raíz del árbol construido.
+     */
 	
 	private NodoCompuertas construirArbolRecursivo(String expresion) {
 		int nivel=0;

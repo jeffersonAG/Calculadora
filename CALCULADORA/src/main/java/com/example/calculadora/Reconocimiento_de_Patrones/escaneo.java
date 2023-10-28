@@ -17,6 +17,11 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Esta clase proporciona una interfaz gráfica para seleccionar una imagen, escanearla utilizando
+ * el motor de reconocimiento óptico de caracteres (OCR) Tesseract y mostrar el texto detectado.
+ */
+
 public class escaneo extends Application {
     private ImageView imageView;
 
@@ -48,6 +53,12 @@ public class escaneo extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Abre un cuadro de diálogo para permitir al usuario seleccionar una imagen.
+     * La imagen seleccionada se muestra en el visor de imágenes.
+     * @param stage El escenario actual.
+     */
+    
     private void seleccionarCaptura(Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg"));
@@ -62,6 +73,11 @@ public class escaneo extends Application {
         }
     }
 
+    /**
+     * Escanea la imagen actualmente mostrada en el visor utilizando Tesseract OCR
+     * y muestra el texto detectado en la consola.
+     */
+    
     private void escanearImagen() {
         // Obtener la imagen actual
         Image image = imageView.getImage();
@@ -89,7 +105,10 @@ public class escaneo extends Application {
         }
     }
 
-
+    /**
+     * Abre la carpeta contenedora del archivo especificado.
+     * @param carpeta La carpeta que se va a abrir.
+     */
 
     private void abrirCarpetaContenedora(File carpeta) {
         if (Desktop.isDesktopSupported()) {

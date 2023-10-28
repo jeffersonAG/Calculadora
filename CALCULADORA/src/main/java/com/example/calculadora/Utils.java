@@ -15,7 +15,17 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+/**
+ * Clase de utilidad para convertir entre tipos de imágenes y matrices OpenCV.
+ */
+
 public class Utils {
+    /**
+     * Convierte una imagen JavaFX en una matriz OpenCV `Mat`.
+     * @param image La imagen JavaFX a convertir.
+     * @return La matriz OpenCV `Mat` que representa la imagen.
+     */
+	
     public static Mat imageToMat(Image image) {
         int width = (int) image.getWidth();
         int height = (int) image.getHeight();
@@ -36,6 +46,13 @@ public class Utils {
 
         return mat;
     }
+    
+    /**
+     * Convierte una matriz OpenCV `Mat` en una imagen JavaFX.
+     * @param mat La matriz OpenCV `Mat` a convertir en imagen.
+     * @return La imagen JavaFX generada a partir de la matriz.
+     */
+    
     private Image matToJavaFXImage(Mat mat) {
         int width = mat.width();
         int height = mat.height();
@@ -62,6 +79,12 @@ public class Utils {
         return writableImage;
     }
 
+    /**
+     * Convierte una matriz OpenCV `Mat` en una imagen BufferedImage.
+     * @param mat La matriz OpenCV `Mat` a convertir en imagen.
+     * @return La imagen BufferedImage generada a partir de la matriz.
+     */
+    
     public static BufferedImage matToBufferedImage(Mat mat) {
         MatOfByte mob = new MatOfByte();
         Imgcodecs.imencode(".jpg", mat, mob);
@@ -74,6 +97,13 @@ public class Utils {
         }
         return bufImage;
     }
+    
+    /**
+     * Convierte una matriz OpenCV `Mat` en una imagen JavaFX.
+     * @param mat La matriz OpenCV `Mat` a convertir en imagen.
+     * @return La imagen JavaFX generada a partir de la matriz.
+     */
+    
     public static Image mat2Image(Mat mat) {
         MatOfByte buffer = new MatOfByte();
         Imgcodecs.imencode(".png", mat, buffer);

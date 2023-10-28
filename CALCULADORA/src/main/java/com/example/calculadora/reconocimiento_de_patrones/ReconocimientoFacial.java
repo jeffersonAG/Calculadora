@@ -1,4 +1,4 @@
-package com.example.calculadora.Reconocimiento_de_Patrones;
+ package com.example.calculadora.Reconocimiento_de_Patrones;
 
 import com.example.calculadora.Utils;
 import javafx.application.Application;
@@ -21,6 +21,11 @@ import org.opencv.videoio.Videoio;
 
 import java.io.File;
 
+/**
+ * Esta clase proporciona una interfaz gráfica para capturar y mostrar un flujo de cámara en vivo,
+ * tomar capturas de pantalla de la cámara y analizar el texto en las capturas utilizando Tesseract OCR.
+ */
+
 public class ReconocimientoFacial extends Application {
 
     private ImageView imageView;
@@ -29,6 +34,11 @@ public class ReconocimientoFacial extends Application {
     private Mat frame; // Variable de instancia para el fotograma
     private int captureCount = 1; // Inicializar un contador
 
+    /**
+     * Constructor de la clase ReconocimientoFacial.
+     * Carga la biblioteca OpenCV al instanciar la clase.
+     */
+    
     public ReconocimientoFacial() {
         // Cargar la biblioteca OpenCV (Open Source Computer Vision Library).
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -106,7 +116,11 @@ public class ReconocimientoFacial extends Application {
         videoCapture.release();
     }
 
-    // Método para capturar pantalla completa
+    // 
+    
+    /**
+     * Método para capturar pantalla completa y analizar el texto en la captura utilizando Tesseract OCR.
+     */
     private void capturarPantalla() {
         if (frame != null) {
             String userDir = System.getProperty("user.dir"); // Obtener la ruta del directorio de usuario
@@ -118,7 +132,7 @@ public class ReconocimientoFacial extends Application {
 
             // Analizar el texto en la captura utilizando Tesseract OCR
             Tesseract tesseract = new Tesseract();
-            tesseract.setDatapath("C:\\Tess4J\\tessdata"); // Reemplaza con la ruta correcta a la carpeta "tessdata" de Tesseract
+            tesseract.setDatapath("\"C:\\Program Files\\Tesseract-OCR\\tessdata\""); // Reemplaza con la ruta correcta a la carpeta "tessdata" de Tesseract
 
             try {
                 String resultado = tesseract.doOCR(outputFile);
@@ -134,6 +148,11 @@ public class ReconocimientoFacial extends Application {
         }
     }
 
+    /**
+     * Método para abrir la ventana de selección de captura escaneo.
+     * @param primaryStage El escenario principal de la aplicación.
+     */
+    
     private void abrirescaneo(Stage primaryStage) {
         escaneo escaneo = new escaneo();
         escaneo.start(new Stage());

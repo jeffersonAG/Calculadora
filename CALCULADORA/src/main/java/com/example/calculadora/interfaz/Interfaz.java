@@ -7,6 +7,7 @@ package com.example.calculadora.Interfaz;
 
 import com.example.calculadora.Arbol.ArbolBinario;
 import com.example.calculadora.Arbol.ArbolCompuertas;
+import com.example.calculadora.CSV.Registro;
 import com.example.calculadora.Servidor.servidor;
 import com.example.calculadora.Reconocimiento_de_Patrones.ReconocimientoFacial;
 import javafx.application.Application;
@@ -23,17 +24,31 @@ import javafx.stage.Stage;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.UUID;
 
 public class Interfaz extends Application {
 
     private TextField textField;
     private ArbolBinario arbol;
     private Stage primaryStage;
+    private String clienteID;
+    private Registro archivo;
+    
+    /**
+     * Método principal que inicia la aplicación.
+     * @param primaryStage El escenario principal de la aplicación.
+     */
 
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        archivo= new Registro(null);
         arbol = new ArbolBinario();
+        
+        //Genera idenficador unico para el cliente
+        clienteID = UUID.randomUUID().toString();
+        
+
 
         textField = new TextField();
         textField.setPromptText("0");
@@ -50,7 +65,7 @@ public class Interfaz extends Application {
                 "7", "8", "9", "*",
                 "4", "5", "6", "-",
                 "1", "2", "3", "+",
-                "0", "←", "=", "^", "CAM", "Server", "BIN"
+                "0", "←", "=", "^", "CAM", "Server", "BIN",
         };
 
         int row = 0;
@@ -73,7 +88,7 @@ public class Interfaz extends Application {
                 boton.setFont(Font.font(18));
                 boton.setOnAction(e -> iniciarServidor());
                 botones.add(boton, col, row);
-            } else {
+            }else {
                 boton.setMinSize(50, 50);
                 boton.setFont(Font.font(18));
                 boton.setOnAction(e -> procesarTecla(tecla));
@@ -97,6 +112,10 @@ public class Interfaz extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Método para abrir la ventana de reconocimiento facial.
+     */
+    
     private void abrirReconocimientoFacial() {
         // Código para abrir la ventana de reconocimiento facial
         ReconocimientoFacial reconocimientoFacialApp = new ReconocimientoFacial();
@@ -104,6 +123,11 @@ public class Interfaz extends Application {
         reconocimientoFacialApp.start(reconocimientoStage);
     }
 
+    /**
+     * Método principal que inicia la aplicación.
+     * @param args Los argumentos de la línea de comandos.
+     */
+    
     public static void main(String[] args) {
         launch(args);
     }
@@ -112,7 +136,7 @@ public class Interfaz extends Application {
         if (tecla.equals("C")) {
             textField.setText("");
         } else if (tecla.equals("=")) {
-        	 String expresion = "MATH: " + textField.getText();
+        	 String expresion = clienteID + "," + "MATH: " + textField.getText();
 
             // Establece una conexión con el servidor
             try (Socket socket = new Socket("localhost", 12345)) {
@@ -134,7 +158,8 @@ public class Interfaz extends Application {
             if (!textoActual.isEmpty()) {
                 textField.setText(textoActual.substring(0, textoActual.length() - 1));
             }
-        } else {
+        
+        }else {
             textField.appendText(tecla);
         }
     }
@@ -155,11 +180,32 @@ public class Interfaz extends Application {
         serverThread.setDaemon(true);
         serverThread.start();
     }
+    
 
-    public class Compuertas extends Stage {
+    /**
+     * Obtiene el ID único del cliente.
+     * @return El ID único del cliente.
+     */
+    
+    public String getClienteID() {
+		return clienteID;
+	}
+    
+    /**
+     * Clase que representa la interfaz de la calculadora de compuertas lógicas.
+     */
+
+	public class Compuertas extends Stage {
         private ArbolCompuertas tree;
+        private Interfaz interfaz;
 
+        /**
+         * Constructor de la clase Compuertas.
+         * @param interfaz La instancia de la clase Interfaz que contiene la calculadora principal.
+         */
+        
         public Compuertas(Stage Interfaz) {
+        	this.interfaz=interfaz;
             tree = new ArbolCompuertas();
             VBox root1 = new VBox(10);
             root1.setAlignment(Pos.CENTER);
@@ -179,7 +225,7 @@ public class Interfaz extends Application {
                     "7", "8", "9", ".OR",
                     "4", "5", "6", "XOR",
                     "1", "2", "3", "NOT",
-                    "0", "←", "=", "DEC", "CAM", "M.log",
+                    "0", "←", "=", "DEC", "CAM", "Server",
             };
 
             int row = 0;
@@ -197,6 +243,16 @@ public class Interfaz extends Application {
                         Stage newStage = new Stage();
                         interfaz.start(newStage);
                     });
+                    botones.add(boton, col, row);
+                } else if (tecla.equals("CAM")) {
+                    boton.setMinSize(50, 50);
+                    boton.setFont(Font.font(18));
+                    boton.setOnAction(e -> abrirReconocimientoFacial());
+                    botones.add(boton, col, row);
+                } else if (tecla.equals("Server")) {
+                    boton.setMinSize(50, 50);
+                    boton.setFont(Font.font(18));
+                    boton.setOnAction(e -> iniciarServidor());
                     botones.add(boton, col, row);
                 } else {
                     boton.setMinSize(50, 50);
@@ -225,11 +281,18 @@ public class Interfaz extends Application {
             this.setScene(scene);
         }
 
+        /**
+         * Procesa una tecla presionada en la calculadora de compuertas lógicas.
+         * @param tecla La tecla presionada.
+         */
+        
         private void procesar(String tecla) {
             if (tecla.equals("C")) {
                 textField.setText("");
             } else if (tecla.equals("=")) {
-            	 String expresion ="LOGIC: " + textField.getText();
+            	String clienteID=interfaz.getClienteID();
+            	String expresion =clienteID + "," + "LOGIC: " + textField.getText();
+            	 
                  try (Socket socket = new Socket("localhost", 12345)) {
                      // Crea flujos de entrada y salida
                      ObjectOutputStream salida = new ObjectOutputStream(socket.getOutputStream());
@@ -253,6 +316,19 @@ public class Interfaz extends Application {
             } else {
                 textField.appendText(tecla);
             }
+        }
+        
+        /**
+         * Inicia el servidor para manejar las operaciones de compuertas lógicas.
+         */
+        
+        private void iniciarServidor() {
+            // Código para iniciar el servidor
+            Thread serverThread = new Thread(() -> {
+                servidor.main(null);
+            });
+            serverThread.setDaemon(true);
+            serverThread.start();
         }
     }
 }

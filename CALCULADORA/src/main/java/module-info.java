@@ -17,9 +17,9 @@ module com.example.calculadora {
     exports com.example.calculadora.Arbol;
     opens com.example.calculadora.Arbol to javafx.fxml;
     exports com.example.calculadora.Interfaz;
-    opens com.example.calculadora.interfaz to javafx.fxml;
+    opens com.example.calculadora.Interfaz to javafx.fxml;
     exports com.example.calculadora.Reconocimiento_de_Patrones;
-    opens com.example.calculadora.reconocimiento_de_patrones to javafx.fxml;
+    opens com.example.calculadora.Reconocimiento_de_Patrones to javafx.fxml;
     exports com.example.calculadora;
 
 }
