@@ -14,7 +14,7 @@ import java.io.File;
 
 public class Test {
     public static void main(String[] args) {
-        File imageFile = new File("C:\\Users\\gutie\\OneDrive\\Documentos\\GitHub\\Calculadora\\CALCULADORA\\src\\main\\resources\\imgs\\b.png");
+        File imageFile = new File("C:\\Users\\gutie\\OneDrive\\Documentos\\GitHub\\Calculadora\\CALCULADORA\\src\\main\\java\\com\\example\\calculadora\\capturas\\captura2.png");
         ITesseract instance = new Tesseract();  // JNA Interface Mapping
         // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
         instance.setDatapath("C:\\Tess4J\\tessdata"); // path to tessdata directory

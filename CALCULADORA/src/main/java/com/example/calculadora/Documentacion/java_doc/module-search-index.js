@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"com.example.calculadora"}];updateSearchResults();

@@ -1,4 +1,4 @@
-package com.example.calculadora.Interfaz;
+package com.example.calculadora.interfaz;
 
 /**
  * Clase que representa la interfaz de una calculadora de expresiones matemáticas
@@ -9,7 +9,7 @@ import com.example.calculadora.Arbol.ArbolBinario;
 import com.example.calculadora.Arbol.ArbolCompuertas;
 import com.example.calculadora.CSV.Registro;
 import com.example.calculadora.Servidor.servidor;
-import com.example.calculadora.Reconocimiento_de_Patrones.ReconocimientoFacial;
+import com.example.calculadora.reconocimiento_de_patrones.ReconocimientoFacial;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -201,7 +201,7 @@ public class Interfaz extends Application {
 
         /**
          * Constructor de la clase Compuertas.
-         * @param interfaz La instancia de la clase Interfaz que contiene la calculadora principal.
+         * @param Interfaz La instancia de la clase Interfaz que contiene la calculadora principal.
          */
         
         public Compuertas(Stage Interfaz) {

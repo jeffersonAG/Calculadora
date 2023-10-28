@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86811a2e-f536-4df9-9455-d545a3efaef4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/opencv_480.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/opencv_480.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/calculadora/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/calculadora/Utils.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/interfaz/Interfaz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/interfaz/Interfaz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/reconocimiento_de_patrones/ReconocimientoFacial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/reconocimiento_de_patrones/ReconocimientoFacial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/calculadora/servidor/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/calculadora/servidor/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +29,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -54,7 +59,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "jefferson",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/opencv/build/java/x86/opencv_java480.dll",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15054744",
@@ -71,7 +76,7 @@
       <recent name="C:\Users\gutie\OneDrive\Documentos\GitHub\Calculadora\CALCULADORA\src\main\java\com\example\calculadora\servidor" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.escaneo">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="Interfaz" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.calculadora.interfaz.Interfaz" />
       <module name="CALCULADORA" />
@@ -98,12 +103,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="com.example.calculadora.interfaz.Interfaz (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.calculadora.interfaz.Interfaz" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.calculadora.Servidor.Test" />
       <module name="CALCULADORA" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.calculadora.interfaz.*" />
+          <option name="PATTERN" value="com.example.calculadora.Servidor.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -138,19 +143,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Test" />
       <item itemvalue="Application.ReconocimientoFacial" />
       <item itemvalue="Application.com.example.calculadora.interfaz.Interfaz" />
-      <item itemvalue="Application.com.example.calculadora.interfaz.Interfaz (1)" />
       <item itemvalue="Application.escaneo" />
       <item itemvalue="Application.Interfaz" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.escaneo" />
         <item itemvalue="Application.Interfaz" />
         <item itemvalue="Application.com.example.calculadora.interfaz.Interfaz" />
         <item itemvalue="Application.ReconocimientoFacial" />
-        <item itemvalue="Application.com.example.calculadora.interfaz.Interfaz (1)" />
       </list>
     </recent_temporary>
   </component>

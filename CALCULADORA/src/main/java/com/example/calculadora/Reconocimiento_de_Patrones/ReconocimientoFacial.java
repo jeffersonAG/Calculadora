@@ -1,4 +1,4 @@
- package com.example.calculadora.Reconocimiento_de_Patrones;
+ package com.example.calculadora.reconocimiento_de_patrones;
 
 import com.example.calculadora.Utils;
 import javafx.application.Application;
@@ -146,13 +146,13 @@ public class ReconocimientoFacial extends Application {
                 e.printStackTrace();
             }
         }
-    }
 
+    }
     /**
      * Método para abrir la ventana de selección de captura escaneo.
      * @param primaryStage El escenario principal de la aplicación.
      */
-    
+
     private void abrirescaneo(Stage primaryStage) {
         escaneo escaneo = new escaneo();
         escaneo.start(new Stage());
